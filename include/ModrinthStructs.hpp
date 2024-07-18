@@ -20,6 +20,15 @@ namespace modrinth {
         string name;
         optional<string> url = nullopt;
     };
+
+    struct GalleryImage {
+        string url;
+        bool featured;
+        optional<string> title = nullopt;
+        optional<string> description = nullopt;
+        string created;
+        int32_t ordering;
+    };
 };
 
 #endif //MODRINTHSTRUCTS_HPP
