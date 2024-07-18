@@ -12,7 +12,7 @@ namespace modrinth {
 
     enum class ProjectSide {
         REQUIRED = 0,
-        OPTIONAL = 1,
+        OPTIONAL_ = 1,
         UNSUPPORTED = 2,
     };
 
