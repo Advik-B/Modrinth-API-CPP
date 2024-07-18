@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstdint>
 #include <ctime>
+#include <nlohmann/json.hpp>
 #include "ModrinthEnums.hpp"
 #include "ModrinthStructs.hpp"
 
@@ -15,9 +16,11 @@ namespace modrinth {
     using std::optional;
     using std::vector;
     using std::nullopt;
+    using nlohmann::json;
 
     typedef vector<string> stringArray;
     typedef vector<ProjectDonationURL> DonationURLArray;
+    typedef vector<GalleryImage> GalleryImageArray;
 
     class Project {
         public:
@@ -46,6 +49,14 @@ namespace modrinth {
             optional<ProjectMonitizationStatus> monitization_status = nullopt;
             optional<string> monitization_type = nullopt;
             optional<string> queued = nullopt;
+            optional<ProjectLicense> license = nullopt;
+            optional<string> versions = nullopt;
+            optional<string> game_versions = nullopt;
+            optional<string> loaders = nullopt;
+            optional<GalleryImageArray> gallery = nullopt;
+
+            static Project fromJson(const json &j);
+
     };
 }
 
