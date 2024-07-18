@@ -10,5 +10,6 @@ int main() {
     json j;
     j["id"] = "test";
     auto project = modrinth::Project::from_json(j);
+    std::cout << project.id << std::endl;
     return 0;
 }
