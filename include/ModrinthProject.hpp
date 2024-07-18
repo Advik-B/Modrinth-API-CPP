@@ -55,7 +55,7 @@ namespace modrinth {
             optional<string> loaders = nullopt;
             optional<GalleryImageArray> gallery = nullopt;
 
-            static Project fromJson(const json &j);
+            static Project from_json(const json &j);
 
     };
 }
