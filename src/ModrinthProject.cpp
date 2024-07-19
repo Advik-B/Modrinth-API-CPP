@@ -18,27 +18,27 @@ namespace modrinth {
         project.server_side = static_cast<ProjectSide>(data["server_side"]);
         project.body = data["body"];
         project.status = static_cast<ProjectStatus>(data["status"]);
-        if (data.contains("requested_status") && !data["requested_status"].is_null()) {
+        if (aint_empty(data, "requested_status")) {
             project.requested_status = static_cast<ProjectRequestedStatus>(data["requested_status"]);
         }
-        if (data.contains("additional_categories") && !data["additional_categories"].is_null()) {
+        if (aint_empty(data, "additional_categories")) {
             for (const auto &category : data["additional_categories"]) {
                 project.additional_categories->push_back(category);
             }
         }
-        if (data.contains("issues_url") && !data["issues_url"].is_null()) {
+        if (aint_empty(data, "issues_url")) {
             project.issues_url = data["issues_url"];
         }
-        if (data.contains("source_url") && !data["source_url"].is_null()) {
+        if (aint_empty(data, "source_url")) {
             project.source_url = data["source_url"];
         }
-        if (data.contains("wiki_url") && !data["wiki_url"].is_null()) {
+        if (aint_empty(data, "wiki_url")) {
             project.wiki_url = data["wiki_url"];
         }
-        if (data.contains("discord_url") && !data["discord_url"].is_null()) {
+        if (aint_empty(data, "discord_url")) {
             project.discord_url = data["discord_url"];
         }
-        if (data.contains("donation_urls") && !data["donation_urls"].is_null()) {
+        if (aint_empty(data, "donation_urls")) {
             for (const auto &donation_url : data["donation_urls"]) {
                 ProjectDonationURL object;
                 object.url = donation_url["url"];
@@ -61,7 +61,51 @@ namespace modrinth {
         if (aint_empty(data, "monitization_status")) {
             project.monitization_status = static_cast<ProjectMonitizationStatus>(data["monitization_status"]);
         }
+        project.id = data["id"];
+        project.team = data["team"];
+        project.published = data["published"];
+        project.updated = data["updated"];
+        if (aint_empty(data, "approved")) {
+            project.approved = data["approved"];
+        }
+        if (aint_empty(data, "queued")) {
+            project.queued = data["queued"];
+        }
+        project.followers = data["followers"];
+        if (aint_empty(data, "license")) {
+            project.license = static_cast<ProjectLicense>(data["license"]);
+        }
+        if (aint_empty(data, "versions")) {
+            for (const auto &version : data["versions"]) {
+                project.versions->push_back(version.value);
+            }
+        }
+        if (aint_empty(data, "game_versions")) {
+            for (const auto &game_version : data["game_versions"]) {
+                project.game_versions->push_back(game_version.value);
+            }
+        }
+        if (aint_empty(data, "loaders")) {
+            for (const auto &loader : data["loaders"]) {
+                project.loaders->push_back(loader.value);
+            }
+        }
+        if (aint_empty(data, "gallery")) {
+            for (const auto &gallery_image : data["gallery"]) {
+                GalleryImage object;
+                object.url = gallery_image["url"];
+                object.featured = gallery_image["featured"];
+                object.created = gallery_image["created"];
+                object.ordering = gallery_image["ordering"];
+                if (aint_empty(gallery_image, "title")) {
+                    object.title = gallery_image["title"];
+                }
+                if (aint_empty(gallery_image, "description")) {
+                    object.description = gallery_image["description"];
+                }
+                project.gallery->push_back(object);
+            }
+        }
         return project;
     }
 };
-
