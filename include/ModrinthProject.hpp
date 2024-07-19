@@ -37,6 +37,8 @@ namespace modrinth {
             string team;
             string id;
             string slug;
+            string published;
+            string updated;
             optional<ProjectRequestedStatus> requested_status = nullopt;
             optional<stringArray> additional_categories = nullopt;
             optional<string> issues_url = nullopt;
@@ -55,6 +57,7 @@ namespace modrinth {
             optional<string> game_versions = nullopt;
             optional<string> loaders = nullopt;
             optional<GalleryImageArray> gallery = nullopt;
+            optional<string> approved = nullopt;
             ProjectType project_type;
 
             static Project from_json(const json &j);
